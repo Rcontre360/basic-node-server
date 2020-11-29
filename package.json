@@ -1,0 +1,20 @@
+{
+  "name": "Basic Node Server",
+  "version": "1.5.0",
+  "description": "Simple test of how to set up a basic application using node. We use a json with some data about SpaceX rockets and we retrieve that info from the server to the app.",
+  "main": "myServer.js",
+  "scripts": {
+    "dev": "nodemon myserver"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser":"^1.19.0",
+    "mysql":"^2.18.1",
+    "express":"^4.17.1"
+  },
+  "devDependencies":{
+    "morgan":"^1.10.0"
+  }
+}

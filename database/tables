@@ -1,0 +1,16 @@
+CREATE DATABASE appDatabase;
+
+USE appDatabase;
+
+CREATE TABLE rockets (
+	rocketID VARCHAR(20) PRIMARY KEY,
+	rocketJSON VARCHAR(600)
+);
+
+CREATE TABLE users (
+	userID INT NOT NULL AUTO_INCREMENT,
+	email VARCHAR(40) NOT NULL,
+	password VARCHAR(20) NOT NULL,
+	name VARCHAR(20) NOT NULL,
+	PRIMARY KEY(userID)
+);

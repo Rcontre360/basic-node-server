@@ -1,34 +1,8 @@
-/*
-ServerSide:
-	myServer.js
-	rocketInfo.json
 
-	public:
-
-	routes:
-		jsonRoutes.js
-		pagesRoutes.js
-
-	views:
-		index.ejs
-		myAbout.ejs
-		myContact.ejs
-		myRocket.ejs
-		myServices.ejs
-
-		templates:
-			footer.ejs
-			head.ejs
-			navbar.ejs
-	
-	This is myServer.js file. Basically is our 'main' function, it handles everything.
-	It sets up ejs engine to make our page dynamic, also it uses a little middleware 
-	function to handle our 404 page.
-
-*/
-const express = require("express")
+//initializations 
+const {express,morgan,bodyParser} = require(__dirname+"/lib/keys");
 const app = express();
-const PORT = 8080;
+app.set("port",process.env.PORT || 8080); // set port as any aviable in the system
 
 // templates engine
 app.set('view engine','ejs');
@@ -38,14 +12,15 @@ app.set('views',__dirname+'/views');
 app.use(express.static(__dirname+"/public"));
 app.use('/',require(__dirname+'/routes/pagesRoutes'));
 app.use('/',require(__dirname+'/routes/jsonRoutes'));
+app.use('/',require(__dirname+'/routes/userRoutes'));
 
-//set 404 page
-app.use((req,res,next)=>{
+//middlewares 
+app.use((req,res,next)=>{   //set 404 page
 	res.status(404).render('my404')
 })
+app.use(morgan("dev")); // devdependency, see request to the server
+app.use(bodyParser.json());
 
-
-
-app.listen(PORT,()=>{
+app.listen(app.get("port"),()=>{
 	console.log("listening at port 8080.");
 });

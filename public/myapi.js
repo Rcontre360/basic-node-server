@@ -4,6 +4,7 @@ const setRocketData = modify;
 const getRocketData = ()=>{
 
 	const input = document.getElementById('inputUser');
+	if (input==null) return;
 
 	input.addEventListener('keypress',(event)=>{
 	    if (event.key === 'Enter') {
