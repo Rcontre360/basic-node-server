@@ -7,5 +7,4 @@ router.get('/',(req,res)=>{
 });
 //end get all pages
 
-
 module.exports = router;

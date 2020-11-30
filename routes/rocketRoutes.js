@@ -29,7 +29,7 @@ mydb.connect((err)=>{
 
 });
 
-//dynamic routes for json file
+//dynamic routes for database file
 router.get('/rockets',(req,res)=>{
 	res.render('myRockets',{rocketName:"Rocket",rocketData:""})
 })

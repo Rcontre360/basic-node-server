@@ -1,24 +1,18 @@
 //initialize
-const {database,router,mysql,bodyParser} = require("../lib/keys");
-router.use(bodyParser());
+const {database,router,mysql,bodyParser,passport} = require("../lib/keys");
 const mydb = mysql.createConnection(database);
+router.use(bodyParser());
 
 //setting routes
-router.get('/Login',(req,res)=>{
-	res.render('Login')
+router.get('/singup',(req,res)=>{
+	res.render('singup')
 });
 
-router.post('/Login',(req,res)=>{
-	const {email,password,name} = req.body;
-	const user = {email,password,name};
+router.post('/singup', passport.authenticate("singup", {
+	successRedirect:"/rockets",
+	failureRedirect:"/"
+}));
 
-	mydb.query("INSERT INTO users SET ?",user,(err,dbres)=>{
-		if (err) throw err;
-		console.log("Success");
-		res.render("index");
-	})
-
-})
 
 router.get('/newAccount',(req,res)=>{
 	res.render('newAccount')
