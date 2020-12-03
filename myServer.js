@@ -1,9 +1,17 @@
 
 //initializations 
-const {express,morgan,bodyParser} = require(__dirname+"/lib/keys");
+const {
+	express,
+	morgan,
+	session,
+	mysqlSession,
+	database
+} = require(__dirname+"/lib/keys");
+
 const passport = require("passport");
-const app = express();
 require("./lib/passport");
+const app = express();
+
 app.set("port",process.env.PORT || 8080); // set port as any aviable in the system
 
 // templates engine
@@ -11,10 +19,22 @@ app.set('view engine','ejs');
 app.set('views',__dirname+'/views');
 
 //middlewares
+app.use(session({
+	secret:"Rcontre360",
+	resave:false,
+	saveUninitialized:false,
+	//store: new mysqlSession(database)
+}))
 app.use(morgan("dev")); // devdependency, see request to the server
-app.use(bodyParser.json());
+app.use(express.urlencoded());
 app.use(passport.initialize());
 app.use(passport.session());
+
+//global variables 
+app.use((req,res,next)=>{
+	app.locals.user = req.user;
+	next();
+})
 
 //Setting routes in 'routes' folder
 app.use(express.static(__dirname+"/public"));

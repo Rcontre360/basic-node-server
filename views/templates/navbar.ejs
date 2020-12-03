@@ -20,11 +20,21 @@
                         <a class="nav-link" id="singup" href="singup">Sing Up!</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="newAccount" href="newAccount">Create Account</a>
+                        <a class="nav-link" id="singin" href="singin">Sing In!</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="myContact" href="rockets">Rockets!</a>
-                    </li>
+
+                    <% if (user!=undefined) {%>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile" href="profile">Your Profile</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" id="logout" href="logout">Log out</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" id="myContact" href="rockets">Rockets!</a>
+                        </li>
+                    <%}%>
                 </ul>
             </div>
         </div>

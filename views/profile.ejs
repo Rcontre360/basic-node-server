@@ -1,0 +1,23 @@
+
+
+<%- include('templates/head',{myTitle:"Home"}) %>
+<%- include('templates/navbar') %>
+
+<div class="container col-sm-12 col-md-12 text-center" id="user-profile">
+    
+    <div class="col-sm-6 col-md-4 mx-auto">
+        <h2 class="text-primary"> <%=user.name%> </h2>
+    </div>
+    <br/>
+    <br/>
+    <div class="row">
+        <h4 class="col-sm-3"> Password: <h4><h4><%=user.password%><h4>
+    </div>
+    <br/>
+    <div class="row">
+        <h4 class="col-sm-3"> Email: <h4><h4><%=user.email%><h4>
+    </div>
+
+</div>
+    
+<%- include('templates/footer') %>
