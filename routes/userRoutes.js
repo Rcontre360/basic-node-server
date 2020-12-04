@@ -5,7 +5,7 @@ const {
 	mysql,
 	passport
 } = require("../lib/keys");
-const {validations} = require("../lib/functions");
+const {validations,isLoggedIn} = require("../lib/functions");
 
 const mydb = mysql.createConnection(database);
 
@@ -18,7 +18,7 @@ router.get("/singin",(req,res)=>{
 	res.render("singin");
 })
 
-router.get("/profile",(req,res)=>{
+router.get("/profile",isLoggedIn,(req,res)=>{
 	res.render("profile",{user:req.user[0]})
 })
 

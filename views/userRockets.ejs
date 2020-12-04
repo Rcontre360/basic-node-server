@@ -1,0 +1,26 @@
+
+
+<%- include('templates/head',{myTitle:"Home"}) %>
+<%- include('templates/navbar') %>
+
+    <div class = "container col-md-12 mx-auto m-4">	
+    	<div class = "row">
+    		<%for (var k in allRockets) {%>
+    			<div class="col-md-3 m-4">
+    				<div class="card text-center">
+    					<div class="card-body">
+    						<h3 class="card-title text-uppercase">
+    							<%=allRockets[k].capsule_serial%>
+    						</h3>
+    						<p class="m-2"><%=allRockets[k].status%>
+    						</p>
+    						<a href="userRockets/delete/<%=allRockets[k].capsule_serial%>" class="btn btn-danger"> Delete </a>
+    						<a class="btn btn-secondary"> Other Option> </a>
+    					</div>
+    				</div>
+    			</div>
+    		<%}%>
+    	</div>
+    </div>
+    
+<%- include('templates/footer') %>

@@ -27,6 +27,7 @@ app.use(session({
 }))
 app.use(morgan("dev")); // devdependency, see request to the server
 app.use(express.urlencoded());
+app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 

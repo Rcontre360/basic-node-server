@@ -32,17 +32,32 @@ const getRocketData = ()=>{
 	});
 }
 
+const addRocketAccount = ()=>{
+	const input = document.getElementById("addRocketAccount");
+
+	input.addEventListener("click",()=>{
+
+		const capsule_serial = document.getElementById('inputUser').value;
+
+		const data = {
+			headers: {'Content-Type': 'application/json'},
+			body:JSON.stringify({"id":capsule_serial}),
+			method:"POST"
+		};
+
+		if (!capsule_serial || capsule_serial=="") return;
+
+		const myPromice = fetch("/rockets/addRocket",data).
+	    then((response)=>{
+	       	return response.json();
+	    }).catch((err)=>{
+	    	console.log(err)
+	    });
+
+	});
+
+}
+
+addRocketAccount();
 getRocketData();
 
-
-	/*		Structure of each button created
-	<p>
-		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-			//button name   
-		</button>
-	</p>
-		<div class="collapse" id="collapseExample">
-			<div class="card card-body">
-		    	//button content	
-		   	</div>
-		</div>*/

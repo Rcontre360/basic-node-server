@@ -14,3 +14,16 @@ CREATE TABLE users (
 	name VARCHAR(60) NOT NULL,
 	PRIMARY KEY(userID)
 );
+
+CREATE TABLE selectedRockets(
+	rocketID VARCHAR(20),
+	userID INT,
+
+	PRIMARY KEY(rocketID,userID),
+
+	FOREIGN KEY(rocketID) REFERENCES 
+	rockets(rocketID) ON DELETE CASCADE,
+
+	FOREIGN KEY(userID) REFERENCES 
+	users(userID) ON DELETE CASCADE
+);
