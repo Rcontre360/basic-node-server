@@ -32,7 +32,7 @@ mydb.connect((err)=>{
 
 //dynamic routes for database file
 router.get('/rockets',isLoggedIn,(req,res)=>{
-	res.render('myRockets',{rocketName:"Rocket",rocketData:""})
+	res.render('myRockets',{rocketName:"Rocket",rocketData:"",modify:false})
 })
 
 router.get('/rockets/:name',isLoggedIn,(req,res,next)=>{
@@ -75,6 +75,11 @@ router.get("/userRockets/delete/:id",isLoggedIn,(req,res)=>{
 		res.redirect("/userRockets");
 	});
 })
+
+router.get("/rockets/modify/:id",(req,res)=>{
+	const rID = req.params.id;
+	res.render('myRockets',{rocketName:"Rocket",rocketID:rID,modify:true})
+});
 
 router.post("/rockets/addRocket",isLoggedIn,(req,res)=>{
 

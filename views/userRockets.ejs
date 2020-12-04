@@ -9,13 +9,17 @@
     			<div class="col-md-3 m-4">
     				<div class="card text-center">
     					<div class="card-body">
+
     						<h3 class="card-title text-uppercase">
     							<%=allRockets[k].capsule_serial%>
     						</h3>
+
     						<p class="m-2"><%=allRockets[k].status%>
     						</p>
+
     						<a href="userRockets/delete/<%=allRockets[k].capsule_serial%>" class="btn btn-danger"> Delete </a>
-    						<a class="btn btn-secondary"> Other Option> </a>
+
+    						<a href = "rockets/modify/<%=allRockets[k].capsule_serial%>" class="btn btn-secondary">Modify Rocket</a>
     					</div>
     				</div>
     			</div>

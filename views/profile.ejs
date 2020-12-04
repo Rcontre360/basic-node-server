@@ -5,17 +5,74 @@
 
 <div class="container col-sm-12 col-md-12 text-center" id="user-profile">
     
-    <div class="col-sm-6 col-md-4 mx-auto">
-        <h2 class="text-primary"> <%=user.name%> </h2>
-    </div>
-    <br/>
-    <br/>
-    <div class="row">
-        <h4 class="col-sm-3"> Password: <h4><h4><%=user.password%><h4>
-    </div>
-    <br/>
-    <div class="row">
-        <h4 class="col-sm-3"> Email: <h4><h4><%=user.email%><h4>
+    <div class="col-md-6 m-4 mx-auto">
+        <div class="card text-center">
+            <div class="card-body">
+
+
+                <%if (changeUserValues==false){%>
+                        
+                    <h1 class="card-title text-uppercase">
+                        <%=user.name%>
+                    </h1>
+                    <h3> email: </h3>
+                    <p class="m-2">
+                         <%=user.email%>
+                    </p>
+
+                <%} else {%>
+
+                    <form action = "/modifyUserData" method = "POST" class="row card-body" id="rocketInfo">
+                    
+                        <p class="col-sm-4">New name: </p>
+
+                        <input type="text" class="form-control col-sm-6 " id="newName" name = "name">
+
+                        <p class="col-sm-4">New email: </p>
+
+                        <input type="email" class="form-control col-sm-6 " id="newEmail" name = "email">
+
+                        <p class="col-sm-4">New Password </p>
+
+                        <input type="password" class="form-control col-sm-6 " id="newPassword" name = "password">
+
+                    <div class = "tex-center col-sm-12 m-3">
+                        <button type="submit" onClick class="mx-auto col-sm-4 btn btn-primary" id="givenPassword">Send</button>
+                    </div>
+
+                </form>
+
+                <%}%>
+
+            </div>
+        </div>
+
+        <%if (changeUserValues==false){%>
+
+        <a data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="true" aria-controls="collapseExample1" class="btn btn-primary btn-block py-2 shadow-sm with-chevron">
+            <p class="d-flex align-items-center justify-content-between mb-0 px-3 py-2">
+                <strong class="text-uppercase" id = "myRocketName">
+                    Modify my data
+                </strong><i class="fa fa-angle-down"></i>
+            </p>
+        </a>
+
+        <div id="collapseExample1" class="collapse shadow-sm">
+            <div class="card">
+                <form action = "/modifyUserData" method = "POST" class="row card-body" id="rocketInfo">
+                    
+                    <p class="col-sm-4">Enter your password</p>
+
+                    <input type="password" class="form-control col-sm-6 " id="givenPassword" name = "givenPassword">
+
+                    <button type="submit" onClick class=" col-sm-2 btn btn-primary" id="givenPassword">Send</button>
+
+                </form>
+            </div>
+        </div>
+
+        <%}%>
+
     </div>
 
 </div>

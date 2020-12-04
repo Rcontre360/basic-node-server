@@ -5,7 +5,7 @@ const {
 	mysql,
 	passport
 } = require("../lib/keys");
-const {validations,isLoggedIn} = require("../lib/functions");
+const {validations,isLoggedIn,matchPassword} = require("../lib/functions");
 
 const mydb = mysql.createConnection(database);
 
@@ -19,12 +19,40 @@ router.get("/singin",(req,res)=>{
 })
 
 router.get("/profile",isLoggedIn,(req,res)=>{
-	res.render("profile",{user:req.user[0]})
+	const nxtUser = req.user[0];
+	nxtUser.password = 
+	res.render("profile",{user:req.user[0],changeUserValues:false})
 })
 
-router.get("/logout",(req,res)=>{
+router.get("/logout",isLoggedIn,(req,res)=>{
 	req.logOut();
 	res.redirect("singin")
+})
+
+router.post("/modifyUserData",(req,res)=>{
+	const userInfo =  req.body;
+	const oldUser = req.user[0];
+	console.log(userInfo)
+
+	if (userInfo.givenPassword!=undefined){
+		if (matchPassword(userInfo.givenPassword,oldUser.password))
+			res.render("profile",{user:req.user[0],changeUserValues:true});
+	} else {
+
+		if (userInfo.name == "") userInfo.name = oldUser.name;
+		if (userInfo.email == "") userInfo.email = oldUser.email;
+		if (userInfo.password == "") userInfo.password = oldUser.password;
+
+		let sql = "UPDATE users SET ?"
+		mydb.query(sql,userInfo,(err,dbres)=>{
+			if (err) {
+				console.log(err)
+				res.redirect("/");
+			}
+			res.redirect("/")
+		})
+
+	}
 })
 
 router.post('/singup',

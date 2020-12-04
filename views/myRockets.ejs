@@ -9,10 +9,19 @@
 	<div class="form-group col-lg-12 text-center">
 		<label for="usr ">Name:</label>
 
-		<div class="row col-lg-6 mx-auto" id = "addRocketForm">
-			<input type="text" class="form-control col-sm-10 " id="inputUser" name = "rocketID">
-			<button type="button" onClick class=" col-lg-2 btn btn-success" id="addRocketAccount">Add rocket</button>
-		</div>
+		<%if (modify==false) {%>
+			<div class="row col-lg-6 mx-auto" id = "addRocketForm">
+				<input type="text" class="form-control col-sm-10 " id="inputUser" name = "rocketID">
+				<button type="button" onClick class=" col-lg-2 btn btn-success" id="addRocketAccount">Add rocket</button>
+			</div>
+		<%} else { %>
+			<div class="row col-lg-6 mx-auto" id = "addRocketForm">
+				<p class="form-control m-0 col-sm-9 " id="inputUserRocket" name = "rocketID">
+				<%=rocketID%>
+				</p>
+				<button type="button" onClick class=" col-lg-3 btn btn-primary" id="addRocketAccount">Send Changes</button>
+			</div>
+		<%}%>
 
 	</div>
 
